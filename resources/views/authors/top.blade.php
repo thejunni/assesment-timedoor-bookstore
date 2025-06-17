@@ -42,7 +42,7 @@
         </div>
          <!-- Tombol Back -->
          <div class="mt-4 text-center">
-            <a href="{{ url()->previous() }}" class="btn btn-secondary">
+            <a href="{{ url('/') }}" class="btn btn-secondary">
                 ← Back
             </a>
         </div>

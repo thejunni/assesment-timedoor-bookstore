@@ -9,10 +9,10 @@
 <body class="bg-light">
     <div class="container py-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="mb-0">📚 Daftar Buku</h2>
+            <h2 class="mb-0">📚 Book List</h2>
             <div>
-                <a href="{{ route('rate.create') }}" class="btn btn-success me-2">Input Rating</a>
-                <a href="{{ route('authors.top') }}" class="btn btn-outline-primary">Top 10 Author</a>
+                <a href="{{ route('rate.create') }}" class="btn btn-success me-2">Submit Rating</a>
+                <a href="{{ route('authors.top') }}" class="btn btn-outline-primary">Top 10 Authors</a>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
             <div class="card-body">
                 <form method="GET" action="{{ route('books.index') }}" class="row g-3 align-items-end">
                     <div class="col-md-3">
-                        <label for="limit" class="form-label">Tampilkan jumlah</label>
+                        <label for="limit" class="form-label">Show Amount</label>
                         <select name="limit" class="form-select">
                             @for ($i = 10; $i <= 100; $i += 10)
                                 <option value="{{ $i }}" {{ request('limit') == $i ? 'selected' : '' }}>{{ $i }}</option>
@@ -29,11 +29,11 @@
                         </select>
                     </div>
                     <div class="col-md-5">
-                        <label for="search" class="form-label">Cari Buku / Penulis</label>
-                        <input type="text" name="search" class="form-control" placeholder="Contoh: Harry Potter atau J.K. Rowling" value="{{ request('search') }}">
+                        <label for="search" class="form-label">Search Book / Author</label>
+                        <input type="text" name="search" class="form-control" placeholder="e.g. Harry Potter or J.K. Rowling" value="{{ request('search') }}">
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary w-100">Cari</button>
+                        <button type="submit" class="btn btn-primary w-100">Search</button>
                     </div>
                 </form>
             </div>
@@ -45,11 +45,11 @@
                 <thead class="table-dark">
                     <tr>
                         <th>No</th>
-                        <th>Judul Buku</th>
-                        <th>Kategori</th>
-                        <th>Penulis</th>
-                        <th>Rating Rata-rata</th>
-                        <th>Jumlah Voter</th>
+                        <th>Book Title</th>
+                        <th>Category</th>
+                        <th>Author</th>
+                        <th>Average Rating</th>
+                        <th>Total Voters</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,13 +64,14 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-muted">Tidak ada buku ditemukan.</td>
+                            <td colspan="6" class="text-muted">No books found.</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
-        {{-- Right Pagination --}}
+
+        <!-- Right Pagination -->
         <div class="d-flex justify-content-end mt-4">
             {{ $books->withQueryString()->links() }}
         </div>        
